@@ -27,7 +27,7 @@
                         <div class="col-sm-4">
                             <form action="{{ route('planifie') }}" method="POST">
                                 @csrf
-                                <button type="submit"  class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Planifier les soutenances</button>
+                                <button type="submit"  class="btn btn-dark mb-2"><i class="dripicons-clockwise"></i> Planifier les soutenances</button>
                             </form>
                         </div>
                         <div class="col-sm-8">
@@ -36,7 +36,7 @@
                                     @csrf
                                     <button type="button" class="btn btn-light mb-2 me-1">Import</button>
                                     <button type="button" class="btn btn-light mb-2">Export</button>
-                                    <button type="submit" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i>Publier</button>
+                                    <button type="submit" class="btn btn-success mb-2 me-1"> <i class="dripicons-export"></i>Publier</button>
                                 </form>
 
                             </div>
@@ -47,19 +47,12 @@
                         <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                             <thead class="table-light">
                                 <tr>
-                                    <th class="all" style="width: 20px;">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck1">
-                                            <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                        </div>
-                                    </th>
-                                    <th class="all">Id</th>
                                     <th>Soutenance</th>
                                     <th>Salle</th>
                                     <th>Date</th>
                                     <th>Jurys</th>
                                     <th>Publié</th>
-                                    <th style="width: 85px;">Note</th>
+                                    <th>Note</th>
                                     <th>Mention</th>
                                     <th style="width: 85px;">Action</th>
                                 </tr>
@@ -68,17 +61,6 @@
                                 @if (!$plannings->isEmpty())
                                 @foreach($plannings as $planning)
                                 <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            {{ $planning->id }}
-                                        </p>
-                                    </td>
                                         <td>
                                             <p class="m-0 d-inline-block align-middle font-16">
                                                 {{ \App\Models\Soutenance::find($planning->soutenance->id)->project->titre }}
@@ -103,17 +85,14 @@
                                         <span class="badge bg-warning">  Non publié</span>
                                         @endif
                                     </td>
-                                               <td>
-
-                                    <div class="col-sm-8">
-                                        <div class="text-sm-end">
-                                            @if($planning->date < now())                <form action="{{ route('plannings.mention', $planning->id) }}" method="POST">
-                                                @csrf
-                                                <input type="number" class="form-control flex-grow-1 form-control-sm me-1" style="max-width: 70px" name="note" value="{{ $planning->note }}">
-                                                <button type="submit" class="btn btn-primary btn-sm"><i class="mdi mdi-plus-circle"></i> </button>
-                                            </form>
-                                        </div>
-                                    </div></td>
+                                  @if($planning->date < now())
+                                  <td>
+                                  <form action="{{ route('plannings.mention', $planning->id) }}" method="POST">
+                                      @csrf
+                                      <input type="number" class="form-control flex-grow-1 form-control-sm me-1" style="max-width: 70px" name="note" value="{{ $planning->note }}">
+                                      <button type="submit" class="btn btn-primary btn-sm"><i class="mdi mdi-plus-circle"></i> </button>
+                                  </form>
+                                     </td>
                                        <td>{{ $planning->mention }}</td>
                                        @else
                                        <td>-</td>

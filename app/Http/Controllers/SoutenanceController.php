@@ -46,7 +46,7 @@ class SoutenanceController extends Controller
             $soutenance=Soutenance::find($id);
             DB::table('soutenances')
             ->where('id', $id)
-            ->where('status_t','pending')->update(['status' => 'accepted']);
+            ->where('status_t','pending')->update(['status_t' => 'accepted']);
             return redirect()->back();
              }
 

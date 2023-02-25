@@ -41,6 +41,7 @@ Route::resource('/plannings', 'App\Http\Controllers\PlanningController');
 Route::resource('/projects', 'App\Http\Controllers\ProjectController');
 Route::resource('/soutenances', 'App\Http\Controllers\SoutenanceController');
 Route::put('/approve/{id}','App\Http\Controllers\SoutenanceController@approve')->name('approve');
+Route::put('/avis/{id}','App\Http\Controllers\SoutenanceController@avis')->name('avis');
 Route::group(['prefix' => 'messages'], function () {
     Route::get('/', ['as' => 'messages', 'uses' => 'App\Http\Controllers\MessagesController@index']);
     Route::get('create', ['as' => 'messages.create', 'uses' => 'App\Http\Controllers\MessagesController@create']);

@@ -11,7 +11,6 @@
                 @method('PUT')
                 <div class="form-group row">
                     <label for="role_id" class="required col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
-
                     <div class="col-md-6">
                         <select id="role_id" type="text" class="form-control @error('role_id') is-invalid @enderror" name="role_id" required autocomplete="role_id" autofocus>
                             <option value=""  selected hidden>Please Select</option>

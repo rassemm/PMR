@@ -34,12 +34,6 @@
                         <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                             <thead class="table-light">
                                 <tr>
-                                    <th class="all" style="width: 20px;">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck1">
-                                            <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                        </div>
-                                    </th>
                                     <th class="all">#</th>
                                     <th class="all">Project</th>
                                     <th>Student</th>
@@ -52,15 +46,6 @@
                                 @foreach ($soutenances as $soutenance)
                                 @if($soutenance->status == 0 )
                                 <tr>
-                                    <td>
-
-
-
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
                                     <td>
                                         <p class="m-0 d-inline-block align-middle font-16">
                                             {{ $soutenance->id }}
@@ -94,10 +79,10 @@
                                         <form method="POST" action="{{route('approve',$soutenance->id)}}">
                                             @csrf
                                             @method('PUT')
-                                            <button class="btn btn-success"  type="submit"><i class="fas fa-check">Published</i></button>
+                                            <button class="btn btn-success mb-2 me-1"  type="submit">Encours</button>
                                         </form>
                                       @else
-                                            <button class="btn btn-danger"  type="submit"><i class="fas fa-times">Pending</i></button>
+                                            <button class="btn btn-danger"  type="submit"><i class="fas fa-times">Validr</i></button>
 
                                       @endif
                                 </tr>
@@ -149,52 +134,30 @@
                         <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                             <thead class="table-light">
                                 <tr>
-                                    <th class="all" style="width: 20px;">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck1">
-                                            <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                        </div>
-                                    </th>
                                     <th class="all">Project</th>
                                     <th>Student</th>
                                     <th>Teacher</th>
-                                    <th>Jerry President</th>
-                                    <th>protractor</th>
                                     <th>Avis Soutenance Technique</th>
                                     <th>Avis Soutenance Finale</th>
-                                    <th>Date</th>
                                     <th style="width: 100px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 @foreach ($soutenances as $soutenance)
-                                @if ($soutenance->status == 1 && $soutenance->project == $project_id)
+                                @if ($soutenance->status == 1 )
                             <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            {{ $soutenance->project->titre }}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        {{ \App\Models\Project::find($soutenance->project)->student }}
-                                    </td>
-                                    <td>
-                                      {{ \App\Models\Project::find($soutenance->project)->teacher }}
-                                    </td>
-                                    <td>
-                                        {{ \App\Models\User::find($soutenance->president)->name }}
-                                    </td>
-
-                                    <td>
-                                        {{ \App\Models\User::find($soutenance->protactor)->name }}
-                                    </td>
+                                        <td>
+                                            <p class="m-0 d-inline-block align-middle font-16">
+                                                {{ $soutenance->project->titre}}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\User::find($soutenance->project->student)->name }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\User::find($soutenance->project->teacher)->name }}
+                                        </td>
                                     <td>
                                         @if ($soutenance->status !=0)
                                         <span class="badge bg-success">Approved</span>
@@ -207,7 +170,7 @@
                                     </td>
                                     <td>
                                         @if ($soutenance->status_t != 'pending')
-                                        <span class="badge bg-success">Approved</span>
+                                        <span class="badge bg-success">Validate</span>
 
 
                                         @else
@@ -220,7 +183,7 @@
                                     </td>
                                     <td class="table-action">
                                         @if($soutenance->status_t == 'pending')
-                                        <form method="POST" action="{{route('approve',$soutenance->id)}}">
+                                        <form method="POST" action="{{route('avis',$soutenance->id)}}">
                                             @csrf
                                             @method('PUT')
                                             <button class="btn btn-success"  type="submit"><i class="fas fa-check">Approve</i></button>
@@ -230,6 +193,7 @@
                                             <button class="btn btn-danger"  type="submit"><i class="fas fa-times">Pending</i></button>
 
                                       @endif
+                                    </td>
                                 </tr>
                                 {{-- @else
                                 <tr><td colspan="9" style="text-align:center">There is no Student</td></tr>--}}
