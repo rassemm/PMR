@@ -213,10 +213,10 @@
                     <i class="mdi mdi-account-edit me-1"></i>
                     <span>Settings</span>
                 </a>
-                <a href="javascript:void(0)" onclick="$('#logout-form').submit();" class="dropdown-item notify-item">
-                    <i class="mdi mdi-logout me-1"></i>
-                    Logout
-               </a>
+                <a href="{{ route('logout') }}?redirect={{ route('login') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
+                <i class="mdi mdi-logout me-1"></i>
+                Logout
+            </a>
             </div>
         </li>
 

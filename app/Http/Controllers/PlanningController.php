@@ -9,6 +9,9 @@ use App\Models\Planning;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Dompdf\Dompdf;
+use Brian2694\Toastr\Facades\Toastr;
+
 
 class PlanningController extends Controller
 {
@@ -75,8 +78,7 @@ class PlanningController extends Controller
             //$this->marquerSalleOccupee($salle, $date);
         }
     }
-
-    return redirect()->route('plannings.index');
+    return redirect()->route('plannings.index')->with('message','Les plannings a été générée avec succès');
 }
 
 
@@ -110,7 +112,7 @@ public function publish()
         $planning->published = true;
         $planning->save();
     }
-    return view('planning.published', ['plannings' => $plannings]);
+    return view('planning.published', ['plannings' => $plannings])->with('message','Liste Planning pubiée avec succée');
 }
 
     public function destroy($id)
@@ -118,7 +120,7 @@ public function publish()
         $planning = Planning::findOrFail($id);
         $planning->users()->detach();
         $planning->delete();
-        return redirect()->route('plannings.index');
+        return redirect()->route('plannings.index')->with('error','Planning supprimer avec succée');
     }
     public function genererMention(Request $request, $id)
 {
@@ -147,9 +149,20 @@ public function publish()
     $planning->mention = $mention;
     $planning->save();
 
-    return redirect()->back()->with('success', 'La mention a été générée avec succès.');
+    return redirect()->back()->with('messgae', 'La mention a été générée avec succès.');
 }
-
+public function generatePV($id) {
+    $planning = Planning::find($id);
+    $data = [
+        'planning' => $planning
+    ];
+    $dompdf = new Dompdf();
+    $html = view('pv_soutenance', $data)->render();
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+    return $dompdf->stream('pv_soutenance.pdf');
+}
 
 
 }

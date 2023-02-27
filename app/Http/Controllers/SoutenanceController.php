@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class SoutenanceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $user = auth()->user();
@@ -40,14 +36,14 @@ class SoutenanceController extends Controller
         DB::table('soutenances')
         ->where('id', $id)
         ->where('status',0)->update(['status' => 1]);
-        return redirect()->back();
+        return redirect()->back()->with('message','Soutenance Technique valider avec succée');
          }
     public function avis($id){
             $soutenance=Soutenance::find($id);
             DB::table('soutenances')
             ->where('id', $id)
             ->where('status_t','pending')->update(['status_t' => 'accepted']);
-            return redirect()->back();
+            return redirect()->back()->with('message','Soutenance Finale valider avec succée');
              }
 
 

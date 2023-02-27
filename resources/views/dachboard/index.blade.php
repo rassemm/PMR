@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
 <div class="row">
-    <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mb-4">Nombre des soutenances par mention</h4>
@@ -9,9 +8,9 @@
                     <canvas id="myChart" width="400" height="400"></canvas>
                 </div>
             </div> <!-- end card body-->
-        </div>
     </div><!-- end card -->
-    </div><!-- end col-->
+</div><!-- end card -->
+</div><!-- end col-->
 </div>
 <div class="container">
 <div class="row">
@@ -76,6 +75,7 @@
     </div>
 </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
     <script>
           var data = JSON.parse('{!! $data !!}');
@@ -98,6 +98,7 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+
 
 @endsection
 

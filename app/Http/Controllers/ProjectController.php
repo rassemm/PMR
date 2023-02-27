@@ -86,7 +86,7 @@ class ProjectController extends Controller
             $project->save();
             $project->user()->sync($request->user);
             $project->createSoutenance();
-            return redirect()->route('projects.index');
+            return redirect()->route('projects.index')->with('message','Projet && Soutenance créer avec succée');
     }
 
     /**
@@ -146,8 +146,7 @@ class ProjectController extends Controller
             $project->student = $request->input('student');
             $project->save();
             $project->user()->sync($request->user);
-           // $project->createSoutenance();
-            return redirect()->route('projects.index');
+            return redirect()->route('projects.index')->with('info','Projet modifier avec succée');
 
     }
 
@@ -167,7 +166,7 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('error','Projet supprimer avec succée');;
 
     }
 
@@ -175,11 +174,11 @@ class ProjectController extends Controller
 
     {        $project=Project::find($id);
         if (Auth::user()->id !== $project->teacher) {
-            abort(403, 'Unauthorized action.');
+            return redirect()->back()->with('error','Vous n,aver pas authorisation d,accepeter');
         }
         DB::table('projects')
         ->where('id', $id)
         ->where('status',false)->update(['status' => true]);
-        return redirect()->back();
+        return redirect()->back()->with('message','Projet authoriser avec succée');
     }
 }

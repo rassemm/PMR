@@ -17,6 +17,12 @@
         <link href="{{asset('assets')}}/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css">
         <link href="{{asset('assets')}}/css/vendor/buttons.bootstrap5.css" rel="stylesheet" type="text/css">
         <link href="{{asset('assets')}}/css/vendor/select.bootstrap5.css" rel="stylesheet" type="text/css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-
+    alpha/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 @yield('head')
     </head>
 
@@ -35,7 +41,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-
                                         @yield('content')
                                         <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                             @csrf
@@ -174,6 +179,7 @@
         <!-- /End-bar -->
 
         <!-- bundle -->
+
         <script src="{{asset('assets/js/vendor.min.js')}}"></script>
         <script src="{{asset('assets/js/app.min.js')}}"></script>
 
@@ -197,6 +203,45 @@
         <script src="{{asset('assets')}}/js/vendor/dataTables.select.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="assets/js/pages/demo.datatable-init.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+  @if(Session::has('message'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+        toastr.success("{{ session('message') }}");
+  @endif
+
+  @if(Session::has('error'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+        toastr.error("{{ session('error') }}");
+  @endif
+
+  @if(Session::has('info'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+        toastr.info("{{ session('info') }}");
+  @endif
+
+  @if(Session::has('warning'))
+  toastr.options =
+  {
+    "closeButton" : true,
+    "progressBar" : true
+  }
+        toastr.warning("{{ session('warning') }}");
+  @endif
+</script>
         @yield('script')
     </body>
 </html>

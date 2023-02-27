@@ -29,12 +29,12 @@
             <li class="side-nav-title side-nav-item">Navigation</li>
 
                 @can('admin_panel_access')
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="{{route('dachboards.index')}}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link ">
-                    <i class="uil-home-alt"></i>
-                    <span class="badge bg-success float-end">4</span>
-                    <span> Dashboards </span>
-                </a>
+                <li class="side-nav-item">
+                    <a class="side-nav-link" href="{{route('dachboards.index')}}">
+                        <i class="uil-home-alt"></i>
+                        <span> Dashboards </span>
+                    </a>
+                </li>
                 @endcan
             </li>
 

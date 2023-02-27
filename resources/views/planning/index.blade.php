@@ -54,6 +54,7 @@
                                     <th>Publié</th>
                                     <th style="width: 125px;">Note</th>
                                     <th style="width: 125px;">Mention</th>
+                                    <th>PV</th>
                                     <th style="width: 85px;">Action</th>
                                 </tr>
                             </thead>
@@ -106,6 +107,8 @@
                                        <td>-</td>
                                        <td>-</td>
                                    @endif
+                                   <td><a href="{{ route('generate',$planning->id)}}">Générer PV</a>
+                                </td>
                                     <td>
                                         <form action="{{ route('plannings.destroy', $planning->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette planification ?')">
                                             @csrf

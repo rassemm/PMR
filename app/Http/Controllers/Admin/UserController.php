@@ -143,4 +143,12 @@ class UserController extends Controller
         return back()->with(['status-success' => "User Updated"]);
 
     }
+    public function logout(Request $request)
+{
+    $redirectUrl = $request->query('redirect');
+
+    Auth::logout();
+
+    return redirect($redirectUrl ?? route('login'));
+}
 }
