@@ -25,20 +25,23 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-4">
+                            @can('planning_generate')
                             <form action="{{ route('planifie') }}" method="POST">
                                 @csrf
                                 <button type="submit"  class="btn btn-primary btn-rounded">{{__('Générer Planning')}}</button>
                             </form>
+                            @endcan
                         </div>
                         <div class="col-sm-8">
                             <div class="text-sm-end">
+                                @can('planning_publish')
                                 <form method="POST" action="{{ route('planning.publish') }}">
                                     @csrf
                                     {{-- <button type="button" class="btn btn-light mb-2 me-1">Import</button>
                                     <button type="button" class="btn btn-light mb-2">Export</button> --}}
                                     <button type="submit" class="btn btn-success  btn-rounded mb-2 me-1"> <i class="dripicons-export"></i>Publier</button>
                                 </form>
-
+                               @endcan
                             </div>
                         </div><!-- end col-->
                     </div>
@@ -90,31 +93,42 @@
 
                                   <td>
                                     @if(!empty($planning->note))
-                                    <button type="button" class="btn btn-outline-success btn-rounded">{{ $planning->note }}</button>
+                                    <button type="button" class="btn btn-secondary btn-rounded">{{ $planning->note }}</button>
                                  @else
+                                 @can('planning_note')
                                    <form action="{{ route('plannings.mention', $planning->id) }}" method="POST">
                                       @csrf
                                       <div class="btn-group mb-2">
-                                      <input type="number" class="form-control" style="max-width: 125px" name="note" value="{{ $planning->note }}">
+                                      <input type="number" class="form-control" style="width: 90px;" name="note" value="{{ $planning->note }}">
                                       <button type="submit" class="btn btn-primary btn-sm"><i class="mdi mdi-plus-circle"></i> </button>
                                     </div>
                                      </form>
+                                     @endcan
                                      @endif
                                      </td>
-                                  <td><button type="button" class="btn btn-outline-success btn-rounded">{{ $planning->mention }}</button>
+                                  <td><button type="button" class="btn btn-secondary btn-rounded">{{ $planning->mention }}</button>
                                   </td>
                                      @else
                                        <td>-</td>
                                        <td>-</td>
                                    @endif
-                                   <td><a href="{{ route('generate',$planning->id)}}">Générer PV</a>
+                                   @if($planning->date < now())
+                                   @can('planning_pv')
+                                   <td><a href="{{ route('generate',$planning->id)}}" class="btn btn-info btn-rounded" > <i class="dripicons-clipboard "></i></a>
+                                    @endcan
                                 </td>
+                                @else
+                                <td><a href="" class="btn btn-dark btn-rounded" disabled> <i class=" dripicons-tag-delete" ></i></a>
+                                </td>
+                                @endif
                                     <td>
+                                        @can('planning_delete')
                                         <form action="{{ route('plannings.destroy', $planning->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette planification ?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-rounded"><i class="mdi mdi-window-close"></i></button>
                                         </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

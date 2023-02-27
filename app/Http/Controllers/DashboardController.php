@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Planning;
+use App\Models\Project;
+use App\Models\Soutenance;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\View;
@@ -12,6 +14,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $users=User::all();
+        $projects=Project::all();
+        $soutenances=Soutenance::all();
         $plannings = Planning::all();
         $excellentCount = 0;
         $tresbienCount = 0;
@@ -51,7 +56,12 @@ class DashboardController extends Controller
         // Affichage de la vue avec les données
         return view('dachboard.index', [
             'data' => json_encode($data),
-            'publishedPlannings' => $publishedPlannings
+            'publishedPlannings' => $publishedPlannings,
+            'users' => $users,
+            'projects' => $projects,
+            'soutenances' => $soutenances,
+            'plannings' => $plannings,
+
         ]);
     }
 

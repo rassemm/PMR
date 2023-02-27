@@ -122,7 +122,7 @@
                     </ul>
                 </div>
             </li>
-
+            @can('project_access')
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarProjects" aria-expanded="false" aria-controls="sidebarProjects" class="side-nav-link">
                     <i class="uil-briefcase"></i>
@@ -137,6 +137,7 @@
 
                 </div>
             </li>
+            @endcan
 {{--
             <li class="side-nav-item">
                 <a href="apps-social-feed.html" class="side-nav-link">
@@ -144,7 +145,7 @@
                     <span> Social Feed </span>
                 </a>
             </li> --}}
-
+            @can('planning_access')
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
                     <i class="uil-clipboard-alt"></i>
@@ -158,6 +159,8 @@
                         </li>
                 </div>
             </li>
+            @endcan
+            @can('soutenance_access')
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                     <i class="uil-document-layout-center"></i>
@@ -175,6 +178,7 @@
                     </ul>
                 </div>
             </li>
+            @endcan
         <div class="clearfix"></div>
 
     </div>

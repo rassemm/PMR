@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+@include('partial.count')
 <div class="row">
         <div class="card">
             <div class="card-body">

@@ -19,7 +19,9 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-4">
+                            @can('project_create')
                             <a href="{{route('projects.create')}}" class="btn btn-success btn-rounded"><i class="mdi mdi-plus-circle me-2"></i>Création</a>
+                            @endcan
                         </div>
                         <div class="col-sm-8">
                             <div class="text-sm-end">
@@ -69,6 +71,7 @@
                                     <td>
                                         {{ \App\Models\User::find($project->teacher)->name }}
                                     </td>
+                                    @can('project_validate')
                                     <td>
                                         @if($project->status == false)
                                         <form method="POST" action="{{route('projects.validate',$project->id)}}">
@@ -81,15 +84,22 @@
 
                                       @endif
                                     </td>
+                                    @endcan
                                      <td >
                                         <div class="btn-group mb-2">
+                                            @can('project_edit')
                                         <a href="{{route('projects.edit',$project->id)}}"  class="btn btn-warning "><i class="dripicons-document-edit"></i></a>
+                                        @endcan
+                                        @can('project_access')
                                         <a href="{{route('projects.show',$project->id)}}"  class="btn btn-info "> <i class="dripicons-preview"></i></a>
+                                        @endcan
+                                        @can('project_delete')
                                             <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button class="btn btn-block btn-danger" > <i class="dripicons-cross"></i></button>
                                             </form>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>

@@ -10,6 +10,7 @@
         <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
         <!-- App css -->
+        <link href="{{asset('assets')}}/css/vendor/simplemde.min.css" rel="stylesheet" type="text/css">
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
         <link href="{{asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style">
@@ -33,20 +34,12 @@
                 <div class="content">
                    @include('partial.navbar')
                     <div class="container-fluid">
-
-                       @include('partial.count')
-
-
                         <div class="row">
                             <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
                                         @yield('content')
                                         <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                             @csrf
                                         </form>
-                                    </div> <!-- end card body-->
-                                </div> <!-- end card -->
                             </div><!-- end col-->
                         </div>
                         <!-- end row-->
@@ -205,6 +198,8 @@
         <script src="assets/js/pages/demo.datatable-init.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="{{asset('assets')}}/js/vendor/simplemde.min.js"></script>
+        <script src="{{asset('assets')}}/js/pages/demo.inbox.js"></script>
     <script>
   @if(Session::has('message'))
   toastr.options =

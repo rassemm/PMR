@@ -1,8 +1,6 @@
 @extends('layouts.master')
 @section('content')
 
-
-    <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
@@ -18,12 +16,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">
-
                         <div class="col-sm-8">
                             <div class="text-sm-end">
-                                {{-- <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
-                                <button type="button" class="btn btn-light mb-2 me-1">Import</button>
-                                <button type="button" class="btn btn-light mb-2">Export</button> --}}
                             </div>
                         </div><!-- end col-->
                     </div>
@@ -56,27 +50,28 @@
                                         </td>
                                     <td>
                                         @if ($soutenance->status !=0)
-                                        <span class="badge bg-success">Approved</span>
+                                        <span class="badge bg-success">Valide</span>
 
 
                                         @else
-                                        <span class="badge bg-danger">Pending</span>
+                                        <span class="badge bg-danger">Non valide</span>
                                         @endif
 
                                     </td>
 
-
+                                    @can('soutenance_validate')
                                     <td class="table-action">
                                         @if($soutenance->status == 0)
                                         <form method="POST" action="{{route('approve',$soutenance->id)}}">
                                             @csrf
                                             @method('PUT')
-                                            <button class="btn btn-success mb-2 me-1"  type="submit">Encours</button>
+                                            <button class="btn btn-info mb-2 me-1"  type="submit"><i class="dripicons-lock"></i></button>
                                         </form>
                                       @else
-                                            <button class="btn btn-danger"  type="submit"><i class="fas fa-times">Validr</i></button>
-
+                                      <button class="btn btn-success  mb-2 me-1"  type="submit"><i class="dripicons-lock-open"></i></button>
                                       @endif
+                                    </td>
+                                    @endcan
                                 </tr>
                                 {{-- @else
                             <tr><td colspan="9" style="text-align:center">There is no Student</td></tr>--}}
@@ -91,10 +86,6 @@
         </div> <!-- end col -->
     </div>
 
-    <!-- end row -->
-
-
-     <!-- start page title -->
      <div class="row">
         <div class="col-12">
             <div class="page-title-box">
@@ -104,7 +95,6 @@
             </div>
         </div>
     </div>
-    <!-- end page title -->
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -149,11 +139,11 @@
                                         </td>
                                     <td>
                                         @if ($soutenance->status !=0)
-                                        <span class="badge bg-success">Approved</span>
+                                        <span class="badge bg-success">Valide</span>
 
 
                                         @else
-                                        <span class="badge bg-danger">Pending</span>
+                                        <span class="badge bg-danger">Non Valide</span>
                                         @endif
 
                                     </td>
@@ -170,19 +160,19 @@
                                     <td>
                                         {{$soutenance->date_f}}
                                     </td>
+                                    @can('soutenance_validate')
                                     <td class="table-action">
                                         @if($soutenance->status_t == 'pending')
                                         <form method="POST" action="{{route('avis',$soutenance->id)}}">
                                             @csrf
                                             @method('PUT')
-                                            <button class="btn btn-success"  type="submit"><i class="fas fa-check">Approve</i></button>
+                                            <button class="btn btn-info mb-2 me-1"  type="submit"><i class="dripicons-lock"></i></button>
                                         </form>
                                       @else
-
-                                            <button class="btn btn-danger"  type="submit"><i class="fas fa-times">Pending</i></button>
-
+                                      <button class="btn btn-success  mb-2 me-1"  type="submit"><i class="dripicons-lock-open"></i></button>
                                       @endif
                                     </td>
+                                    @endcan
                                 </tr>
                                 {{-- @else
                                 <tr><td colspan="9" style="text-align:center">There is no Student</td></tr>--}}

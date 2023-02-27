@@ -87,6 +87,60 @@ class PermissionTableSeeder extends Seeder
                 'name' => 'permission_create',
             ],
 
+        // project permissions
+
+           [
+             'name' => 'project_access',
+         ],
+
+         [
+             'name' => 'project_edit',
+         ],
+
+         [
+             'name' => 'project_delete',
+         ],
+
+         [
+             'name' => 'project_create',
+         ],
+         [
+            'name' => 'project_validate',
+        ],
+        // soutenance permissions
+
+        [
+            'name' => 'soutenance_access',
+        ],
+        [
+            'name' => 'soutenance_delete',
+        ],
+
+        [
+            'name' => 'soutenance_validate',
+        ],
+        // Planning permissions
+
+        [
+            'name' => 'planning_access',
+        ],
+        [
+            'name' => 'planning_delete',
+        ],
+
+        [
+            'name' => 'planning_publish',
+        ],
+        [
+            'name' => 'planning_generate',
+        ],
+        [
+            'name' => 'planning_note',
+        ],
+        [
+            'name' => 'planning_pv',
+        ],
+
 
 
 
