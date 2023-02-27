@@ -18,14 +18,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">
-                        <div class="col-sm-4">
-                            <a href="javascript:void(0);" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add new</a>
-                        </div>
+
                         <div class="col-sm-8">
                             <div class="text-sm-end">
-                                <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
+                                {{-- <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
                                 <button type="button" class="btn btn-light mb-2 me-1">Import</button>
-                                <button type="button" class="btn btn-light mb-2">Export</button>
+                                <button type="button" class="btn btn-light mb-2">Export</button> --}}
                             </div>
                         </div><!-- end col-->
                     </div>
@@ -34,11 +32,10 @@
                         <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                             <thead class="table-light">
                                 <tr>
-                                    <th class="all">#</th>
                                     <th class="all">Project</th>
                                     <th>Student</th>
                                     <th>Teacher</th>
-                                    <th>Avis Soutenance Technique</th>
+                                    <th>Avis</th>
                                     <th style="width: 100px;">Action</th>
                                 </tr>
                             </thead>
@@ -46,11 +43,6 @@
                                 @foreach ($soutenances as $soutenance)
                                 @if($soutenance->status == 0 )
                                 <tr>
-                                    <td>
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            {{ $soutenance->id }}
-                                        </p>
-                                    </td>
                                         <td>
                                             <p class="m-0 d-inline-block align-middle font-16">
                                                 {{ $soutenance->project->titre}}
@@ -118,14 +110,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">
-                        <div class="col-sm-4">
-                            <a href="javascript:void(0);" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add new</a>
-                        </div>
                         <div class="col-sm-8">
                             <div class="text-sm-end">
-                                <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
+                                {{-- <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
                                 <button type="button" class="btn btn-light mb-2 me-1">Import</button>
-                                <button type="button" class="btn btn-light mb-2">Export</button>
+                                <button type="button" class="btn btn-light mb-2">Export</button> --}}
                             </div>
                         </div><!-- end col-->
                     </div>
@@ -138,7 +127,7 @@
                                     <th>Student</th>
                                     <th>Teacher</th>
                                     <th>Avis Soutenance Technique</th>
-                                    <th>Avis Soutenance Finale</th>
+                                    <th>Avis Finale</th>
                                     <th style="width: 100px;">Action</th>
                                 </tr>
                             </thead>

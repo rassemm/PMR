@@ -46,7 +46,7 @@
                                     <div class="col-lg-6">
                                     <div class="mb-3 position-relative" id="datepicker2">
                                         <label class="form-label">Description</label>
-                                        <input type="text" class="form-control" name="description"  data-provide="datepicker" data-date-format="d-M-yyyy" data-date-container="">
+                                        <input type="text" class="form-control" name="description"  data-provide=""  data-date-container="">
                                     </div>
                                 </div>
                             </div>
@@ -97,8 +97,8 @@
                                     </div>
                                   </div>
                                    <div class="form-group">
-                                       <button type="submit" class="btn btn-dark form-control">Ajouter</button>
-                                   </div> <!-- end col-->
+                                    <button type="submit" class="btn btn-success mt-2"><i class="mdi mdi-content-save"></i> Save</button>
+                                </div> <!-- end col-->
 
                     </form>
                     </div>

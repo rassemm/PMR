@@ -195,9 +195,7 @@
         <script src="{{asset('assets')}}/js/vendor/buttons.print.min.js"></script>
         <script src="{{asset('assets')}}/js/vendor/dataTables.keyTable.min.js"></script>
         <script src="{{asset('assets')}}/js/vendor/dataTables.select.min.js"></script>
-        <!-- third party js ends -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <!-- demo app -->
         <script src="assets/js/pages/demo.datatable-init.js"></script>
         @yield('script')
     </body>

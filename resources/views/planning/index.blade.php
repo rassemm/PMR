@@ -27,16 +27,16 @@
                         <div class="col-sm-4">
                             <form action="{{ route('planifie') }}" method="POST">
                                 @csrf
-                                <button type="submit"  class="btn btn-dark mb-2"><i class="dripicons-clockwise"></i> Planifier les soutenances</button>
+                                <button type="submit"  class="btn btn-primary btn-rounded">{{__('Générer Planning')}}</button>
                             </form>
                         </div>
                         <div class="col-sm-8">
                             <div class="text-sm-end">
                                 <form method="POST" action="{{ route('planning.publish') }}">
                                     @csrf
-                                    <button type="button" class="btn btn-light mb-2 me-1">Import</button>
-                                    <button type="button" class="btn btn-light mb-2">Export</button>
-                                    <button type="submit" class="btn btn-success mb-2 me-1"> <i class="dripicons-export"></i>Publier</button>
+                                    {{-- <button type="button" class="btn btn-light mb-2 me-1">Import</button>
+                                    <button type="button" class="btn btn-light mb-2">Export</button> --}}
+                                    <button type="submit" class="btn btn-success  btn-rounded mb-2 me-1"> <i class="dripicons-export"></i>Publier</button>
                                 </form>
 
                             </div>
@@ -52,8 +52,8 @@
                                     <th>Date</th>
                                     <th>Jurys</th>
                                     <th>Publié</th>
-                                    <th>Note</th>
-                                    <th>Mention</th>
+                                    <th style="width: 125px;">Note</th>
+                                    <th style="width: 125px;">Mention</th>
                                     <th style="width: 85px;">Action</th>
                                 </tr>
                             </thead>
@@ -86,15 +86,23 @@
                                         @endif
                                     </td>
                                   @if($planning->date < now())
+
                                   <td>
-                                  <form action="{{ route('plannings.mention', $planning->id) }}" method="POST">
+                                    @if(!empty($planning->note))
+                                    <button type="button" class="btn btn-outline-success btn-rounded">{{ $planning->note }}</button>
+                                 @else
+                                   <form action="{{ route('plannings.mention', $planning->id) }}" method="POST">
                                       @csrf
-                                      <input type="number" class="form-control flex-grow-1 form-control-sm me-1" style="max-width: 70px" name="note" value="{{ $planning->note }}">
+                                      <div class="btn-group mb-2">
+                                      <input type="number" class="form-control" style="max-width: 125px" name="note" value="{{ $planning->note }}">
                                       <button type="submit" class="btn btn-primary btn-sm"><i class="mdi mdi-plus-circle"></i> </button>
-                                  </form>
+                                    </div>
+                                     </form>
+                                     @endif
                                      </td>
-                                       <td>{{ $planning->mention }}</td>
-                                       @else
+                                  <td><button type="button" class="btn btn-outline-success btn-rounded">{{ $planning->mention }}</button>
+                                  </td>
+                                     @else
                                        <td>-</td>
                                        <td>-</td>
                                    @endif
@@ -102,7 +110,7 @@
                                         <form action="{{ route('plannings.destroy', $planning->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette planification ?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                                            <button type="submit" class="btn btn-danger btn-rounded"><i class="mdi mdi-window-close"></i></button>
                                         </form>
                                     </td>
                                 </tr>

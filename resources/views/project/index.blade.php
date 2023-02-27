@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-4">
-                            <a href="{{route('projects.create')}}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add new</a>
+                            <a href="{{route('projects.create')}}" class="btn btn-success btn-rounded"><i class="mdi mdi-plus-circle me-2"></i>Création</a>
                         </div>
                         <div class="col-sm-8">
                             <div class="text-sm-end">
@@ -82,18 +82,15 @@
                                       @endif
                                     </td>
                                      <td >
-                                       <td>
-                                        <a href="{{route('projects.edit',$project->id)}}"class="btn btn-warning "><i class="dripicons-document-edit"></i></a>
-                                       </td>
-                                       <td>
-                                        <a href="{{route('projects.show',$project->id)}}" class="btn btn-info "> <i class="dripicons-preview"></i></a>
-                                       </td>
-                                       <td>
+                                        <div class="btn-group mb-2">
+                                        <a href="{{route('projects.edit',$project->id)}}"  class="btn btn-warning "><i class="dripicons-document-edit"></i></a>
+                                        <a href="{{route('projects.show',$project->id)}}"  class="btn btn-info "> <i class="dripicons-preview"></i></a>
                                             <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button class="btn btn-block btn-danger"> <i class="dripicons-cross"></i></button>
+                                                <button class="btn btn-block btn-danger" > <i class="dripicons-cross"></i></button>
                                             </form>
+                                        </div>
                                     </td>
                                 </tr>
 

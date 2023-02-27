@@ -72,33 +72,33 @@
                         </a>
                         <ul aria-expanded="false" class="collapse first-level
                         ">
-                          
+
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark " href="/messages" aria-expanded="false">
                                         <i class="mr-3 mdi mdi-account-multiple" aria-hidden="true"></i>
                                         <span class="hide-menu">Messages @include('messenger.unread-count')</span>
                                     </a>
                                 </li>
-                          
+
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark " href="/messages/create" aria-expanded="false">
                                         <i class="mr-3 mdi mdi-star" aria-hidden="false"></i>
                                         <span class="hide-menu">Create New Message</span>
                                     </a>
                                 </li>
-                           
-                              
+
+
                         </ul>
                     </li>
                          <li class="sidebar-item selected"> <a class="sidebar-link has-arrow waves-effect waves-dark active" href="javascript:void(0)" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home feather-icon"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span class="hide-menu">Systéme <span class="badge badge-pill badge-success"></span></span></a>
                             <ul aria-expanded="false" class="collapse first-level in">
-                                 <li class="sidebar-item"><a href="{{route('admin.profile',$user->id)}}"  class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu">Edit profile</span></a></li>      
+                                 <li class="sidebar-item"><a href="{{route('admin.profile',$user->id)}}"  class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu">Edit profile</span></a></li>
                                  <li class="sidebar-item"><a href="/messages"  class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"></span></a></li>    </ul>    <!--                        <li class="sidebar-item active"><a href="index2.html" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Awesome Dashboard </span></a></li>
                                <li class="sidebar-item"><a href="index3.html"> Classy Dashboard </span></a></li>
                                 <li class="sidebar-item"><a href="index4.html" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Analytical Dashboard </span></a></li>
                                 <li class="sidebar-item"><a href="index5.html" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> Minimal Dashboard </span></a></li>-->
-                            </ul> 
-                        </li>  
+                            </ul>
+                        </li>
 
                     </ul>
 

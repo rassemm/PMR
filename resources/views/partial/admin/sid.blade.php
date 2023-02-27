@@ -1,6 +1,6 @@
 
 <div class="leftside-menu">
-    
+
     <!-- LOGO -->
     <a href="index.html" class="logo text-center logo-light">
         <span class="logo-lg">
@@ -30,54 +30,48 @@
 
                 @can('admin_panel_access')
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="{{ route('admin.home') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link @if(request()->is('admin')) is_active @endif">
+                <a data-bs-toggle="collapse" href="{{route('dachboards.index')}}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link ">
                     <i class="uil-home-alt"></i>
                     <span class="badge bg-success float-end">4</span>
                     <span> Dashboards </span>
                 </a>
                 @endcan
-                <div class="collapse" id="sidebarDashboards">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="dashboard-analytics.html">Analytics</a>
-                        </li>
-                        <li>
-                            <a href="dashboard-crm.html">CRM</a>
-                        </li>
-                        <li>
-                            <a href="index.html">Ecommerce</a>
-                        </li>
-                        <li>
-                            <a href="dashboard-projects.html">Projects</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
 
-            <li class="side-nav-title side-nav-item">Apps</li>
-
+            <li class="side-nav-title side-nav-item">App</li>
+            @can('users_access')
             <li class="side-nav-item">
-                <a href="apps-calendar.html" class="side-nav-link">
-                    <i class="uil-calender"></i>
-                    <span> Calendar </span>
+                <a class="side-nav-link @if(request()->is('admin/users') || request()->is('admin/users/*')) is_active @endif" href="{{ route('admin.users.index') }}">
+                    <i class="mdi mdi-account-edit me-1"></i>
+                    <span> Users </span>
                 </a>
             </li>
-
+            @endcan
+            @can('roles_access')
             <li class="side-nav-item">
-                <a href="apps-chat.html" class="side-nav-link">
-                    <i class="uil-comments-alt"></i>
-                    <span> Chat </span>
+                <a class="side-nav-link @if(request()->is('admin/roles') || request()->is('admin/roles/*')) is_active @endif" href="{{ route('admin.roles.index') }}">
+                    <i class="mdi mdi-account-circle me-1"></i>
+                    <span> Roles </span>
                 </a>
             </li>
-        @canany(['users_access','roles_access','permissions_access'])
+            @endcan
+            @can('permissions_access')
             <li class="side-nav-item">
+                <a class="side-nav-link @ @if(request()->is('admin/permissions') || request()->is('admin/permissions/*')) is_active @endif" href="{{ route('admin.permissions.index') }}">
+                    <i class="mdi mdi-lock-outline me-1"></i>
+                    <span> Permission </span>
+                </a>
+            </li>
+            @endcan
+
+            {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
                     <i class="mr-3 mdi mdi-account" aria-hidden="true"></i>
                     <span> Users Management </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarEcommerce">
-                    <ul aria-expanded="false" class="side-nav-second-level 
+                    <ul aria-expanded="false" class="side-nav-second-level
                     @if(request()->is('admin/users') || request()->is('admin/users/*')) in @endif
                         @if(request()->is('admin/roles') || request()->is('admin/roles/*')) in @endif
                         @if(request()->is('admin/permissions') || request()->is('admin/permissions/*')) in @endif">
@@ -110,7 +104,7 @@
                     </ul>
                 </div>
             </li>
-            @endcanany
+            @endcanany--}}
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                     <i class="uil-envelope"></i>
@@ -140,10 +134,10 @@
                         <li>
                             <a href="{{route('projects.index')}}">List</a>
                         </li>
-                      
+
                 </div>
             </li>
-{{-- 
+{{--
             <li class="side-nav-item">
                 <a href="apps-social-feed.html" class="side-nav-link">
                     <i class="uil-rss"></i>
@@ -164,15 +158,6 @@
                         </li>
                 </div>
             </li>
-           
-            <li class="side-nav-item">
-                <a href="landing.html" target="_blank" class="side-nav-link">
-                    <i class="uil-globe"></i>
-                    <span class="badge bg-secondary text-light float-end">New</span>
-                    <span> Landing </span>
-                </a>
-            </li>
-
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                     <i class="uil-document-layout-center"></i>

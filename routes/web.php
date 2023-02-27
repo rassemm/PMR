@@ -38,6 +38,7 @@ Route::put('/projects/{project}/validate', 'App\Http\Controllers\ProjectControll
 Route::post('/planning/publish','App\Http\Controllers\PlanningController@publish')->name('planning.publish');
 Route::post('/plannings/generate', 'App\Http\Controllers\PlanningController@planifierSoutenances')->name('planifie');
 Route::resource('/plannings', 'App\Http\Controllers\PlanningController');
+Route::resource('/dachboards', 'App\Http\Controllers\DashboardController');
 Route::resource('/projects', 'App\Http\Controllers\ProjectController');
 Route::resource('/soutenances', 'App\Http\Controllers\SoutenanceController');
 Route::put('/approve/{id}','App\Http\Controllers\SoutenanceController@approve')->name('approve');

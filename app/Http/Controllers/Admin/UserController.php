@@ -36,9 +36,9 @@ class UserController extends Controller
         $students = User::whereHas('role', function($q){
           $q->whereIn('title', ['student']);
         })->get();
- 
+
         return view('admin.users.index',compact('admins', 'teachers', 'students', 'uid'));
-    
+
         //$users = User::with('role')->paginate(5)->appends($request->query());
        // return view('admin.users.index',compact('users'));
 
@@ -126,12 +126,12 @@ class UserController extends Controller
         return redirect()->back()->with(['status-success' => "User Deleted"]);
     }
     public function editprofile(User $user,$id){
-       $user =Auth::user();
-       $user =User::find($id);
-        return view ('admin.users.profile',compact('user'));
+        $user = Auth::user();
+        $user =User::find($id);
+        return view ('admin.users.prf',compact('user'));
     }
     public function profileUpdate(Request $request){
-    
+
         $request->validate([
             'name' =>'required|min:4|string|max:255',
             'email'=>'required|email|string|max:255'
@@ -141,6 +141,6 @@ class UserController extends Controller
         $user->email = $request['email'];
         $user->save();
         return back()->with(['status-success' => "User Updated"]);
-       
+
     }
 }

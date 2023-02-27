@@ -83,4 +83,8 @@ class User extends Authenticatable
     public function plannings(){
         return $this->belongsToMany(Planning::class);
     }
+    public function hasMaxProjects()
+     {
+         return $this->projects()->count() >= 3;
+     }
 }

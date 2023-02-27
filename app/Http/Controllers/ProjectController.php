@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Soutenance;
 use App\Models\User;
 use App\Models\role;
 use Illuminate\Http\Request;
@@ -65,10 +66,16 @@ class ProjectController extends Controller
             'description' =>'required',
             'ste'      =>'required',
             'class' => 'required',
-            'teacher'   => 'required',
-            'student'   => 'required'
+            'teacher' => 'required',
+            'student'   => 'required|unique:projects'
         ]);
             $user = User::all();
+            $teacherId = $request->input('teacher');
+            $projectCount = Project::where('teacher', $teacherId)->count();
+
+            if ($projectCount >= 3) {
+                return redirect()->back()->withErrors(['teacher' => 'Teacher already has 8 projects associated']);
+            }
             $project = new Project();
             $project->titre     = $request->input('titre');
             $project->description   = $request->input('description');
